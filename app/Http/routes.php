@@ -19,7 +19,7 @@ get('/', function () {
 
 get('/token', function(Request $request){
   Session::regenerateToken();
-  return [csrf_token(), $request->cookie('XSRF-TOKEN')];
+  return ['token'=>csrf_token()];
 });
 
 resource( 'blog', 'BlogController', ['except'=>['create', 'show', 'edit']] );

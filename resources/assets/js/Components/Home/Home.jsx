@@ -1,11 +1,12 @@
 import React from 'react'
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup'
 import _ from 'lodash'
 import Post from './Post.jsx'
 import Pagination from './Pagination.jsx'
 
 export default React.createClass({
   render(){
-    const { posts, page } = this.props
+    const { posts, page, reload } = this.props
     return(
       <div className="container">
 
@@ -19,10 +20,12 @@ export default React.createClass({
                     <small>Secondary Text</small>
                 </h1>
 
-                { _.map(posts, post => <Post key={post.id} post={post} />) }
+                <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={1500} transitionLeaveTimeout={1300}>
+                  { _.map(posts, post => <Post key={post.id} post={post} />) }
+                </ReactCSSTransitionGroup>
 
                 {/*<!-- Pager -->*/}
-                <Pagination page={page}/>
+                <Pagination page={page} reload={reload}/>
 
             </div>
 

@@ -31,11 +31,14 @@ const HolaMundo = React.createClass({
     .then(response => response.json())
     .then(json => { this.setState({ posts:json.data, page:_.omit(json, ['data']) }) } )
   },
+  reload(json){
+    this.setState({ posts:json.data, page:_.omit(json, ['data']) })
+  },
   render(){
     return (
       <div>
         <Header menu={this.state.menu} />
-        <Home posts={this.state.posts} page={this.state.page} />
+        <Home posts={this.state.posts} page={this.state.page} reload={this.reload} />
         <Footer />
       </div>
     )

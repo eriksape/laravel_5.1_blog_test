@@ -1,6 +1,3 @@
-
-// For instructions about this file refer to
-// webpack and webpack-hot-middleware documentation
 var webpack = require('webpack');
 var path = require('path');
 
