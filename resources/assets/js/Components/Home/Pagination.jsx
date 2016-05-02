@@ -5,7 +5,8 @@ const ButtonNavigation = React.createClass({
   reload(url){
     const { reload } = this.props
     console.log(url)
-    fetch(url.replace('localhost:8000', 'localhost:3000')).then( response => response.json() ).then( json => {
+    if (isEqual(process.env.NODE_ENV, 'development')) url=url.replace('localhost:8000', 'localhost:3000')
+    fetch(url).then( response => response.json() ).then( json => {
       console.log(json)
       reload(json);
     } )
